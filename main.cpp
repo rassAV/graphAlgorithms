@@ -7,21 +7,17 @@ int main() {
     setlocale(LC_ALL, "rus");
 
     Graph graph;
-    if (!graph.readFromFile("graph.dat")) {
+    if (!graph.readFromFile("graph2.dat")) {
         return 1;
     }
 
     int startVertex = 1;
-    int endVertex = graph.getMaxVertex();
-    int minDistance = graph.dijkstra(startVertex, endVertex);
+    int numIterations = 100;
+    int numAnts = 10;
 
-    cout << "Кратчайшее расстояние от вершины " << startVertex << " до вершины " << endVertex << ": ";
-    if (minDistance == -1) {
-        cout << "нет пути" << endl;
-    }
-    else {
-        cout << minDistance << endl;
-    }
+    int bestLen = graph.ants(startVertex, numIterations, numAnts);
+
+    cout << "Кратчайший гамильтонов цикл графа: " << bestLen << endl;
 
     return 0;
 }

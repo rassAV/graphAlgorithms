@@ -5,17 +5,23 @@
 #include <fstream>
 #include <map>
 #include <vector>
+#include <set>
+#include <ctime>
 
 using namespace std;
 
 struct edge {
-    int to, weight;
-    edge(int t, int w) : to(t), weight(w) {}
+    int to, weight, pheromones;
+    edge(int t, int w) : to(t), weight(w), pheromones(1) {}
+    edge(int t, int w, int p) : to(t), weight(w), pheromones(p) {}
 };
 
 class Graph {
     private:
     map<int, vector<edge>> graph;
+    double evaporationRate = 0.5;
+    double alpha = 1.0;
+    double beta = 2.0;
 
     public:
     bool readFromFile(const string& filename) {
@@ -71,6 +77,12 @@ class Graph {
 
         if (minDistance == INTMAX_MAX) return -1;
         return minDistance;
+    }
+
+    int ants(int start, int numIterations, int numAnts) {
+        int bestLength = INT_MAX;
+
+        return bestLength;
     }
 };
 
